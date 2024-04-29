@@ -3,7 +3,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaEmpleados implements Serializable {
+public class ListaEmpleados implements Serializable {//Después de crear la clase Empleado creí que esta sería igual
+    //Se implementa seriabilizable para convertir los bytes en algo entendible
     private List<Empleado> empleados;//El enunciado pide List
 
     public ListaEmpleados() {
