@@ -3,13 +3,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GestorEmpleados {
-    private List<Empleado> empleados;
-    private static final String NOMBRE_ARCHIVO = "empleados.dat";
-
-    public GestorEmpleados() {
-        empleados = new ArrayList<>();
-    }
+public class Metodos {
 
     public void agregarEmpleado(Empleado empleado) {
         empleados.add(empleado);
