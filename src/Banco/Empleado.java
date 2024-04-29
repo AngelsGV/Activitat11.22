@@ -1,6 +1,6 @@
 package Banco;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Empleado implements Serializable {
     private String dni;
@@ -12,25 +12,14 @@ public class Empleado implements Serializable {
         this.nombre = nombre;
         this.sueldo = sueldo;
     }
-
-    public String getDni() {
-        return dni;
-    }
+    //Getters i setter necesaris
 
     public void setDni(String dni) {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public double getSueldo() {
-        return sueldo;
     }
 
     public void setSueldo(double sueldo) {
