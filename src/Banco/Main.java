@@ -88,7 +88,7 @@ public class Main {
     }
 
     private static void eliminarEmpleado(Scanner sc, ListaEmpleados listaEmpleados) {
-        System.out.print("Ingrese el índice del empleado que desea eliminar: ");
+        System.out.print("Ingrese el índice del empleado que quiere eliminar: ");
         int indice = sc.nextInt();
         sc.nextLine();  // Consumir el salto de línea después del número
 
@@ -98,27 +98,31 @@ public class Main {
 
     private static void modificarEmpleado(Scanner sc, ListaEmpleados listaEmpleados) {
 
-        System.out.print("Ingrese el índice del empleado que desea modificar: ");
+        System.out.print("Ingrese el índice del empleado(se puede ver en la opción mostrar): ");
         int indice = sc.nextInt();
 
-
+//problemas: no me dejaba introducir todos los datos modificados, solo de dos en dos.-->OK
         Empleado empleado = listaEmpleados.getEmpleados().get(indice);
 
         System.out.println("Empleado actual: " + empleado);
 
-        System.out.print("Ingrese el nuevo DNI del empleado: ");
+sc.nextLine();//sin esto me da problemas. pero no sé porque. Al final es solo un salto de pagina, no?
+
+        System.out.println("Ingrese el nuevo DNI del empleado: ");
         String nuevoDni = sc.nextLine();
         empleado.setDni(nuevoDni);
         //para poder modificarlo desde la clase empleado el atributo que toca
 
-        System.out.print("Ingrese el nuevo nombre del empleado: ");
+        System.out.println("Ingrese el nuevo nombre del empleado: ");
         String nuevoNombre = sc.nextLine();
         empleado.setNombre(nuevoNombre);
 
-        System.out.print("Ingrese el nuevo sueldo del empleado: ");
+        System.out.println("Ingrese el nuevo sueldo del empleado: ");
         double nuevoSueldo = sc.nextDouble();
         empleado.setSueldo(nuevoSueldo);
         sc.nextLine();  // Consumir el salto de línea después del número
+
+        listaEmpleados.getEmpleados().set(indice, empleado); //sino no se guarda
 
         System.out.println("Empleado modificado correctamente.");
     }

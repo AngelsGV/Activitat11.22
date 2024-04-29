@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="20f9df07-ffcd-474c-8a32-287cd42d718f" name="Changes" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Banco/Empleado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banco/Empleado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Banco/ListaEmpleados.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banco/ListaEmpleados.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Banco/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Banco/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +98,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714421235115</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1714423390054</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714423390054</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1714423470587</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714423470587</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
