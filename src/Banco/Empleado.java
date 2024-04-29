@@ -1,8 +1,8 @@
 package Banco;
 
-import java.io.Serializable;
+import java.io.*;
 
-class Empleado implements Serializable {
+class Empleado implements Serializable {//resuelta 11.9
     String dni;
     String nombre;
     double sueldo;
