@@ -2,7 +2,7 @@ package Banco;
 
 import java.io.*;
 
-public class Empleado implements Serializable {
+public class Empleado implements Serializable {//Ex resuelto 11.9
     private String dni;
     private String nombre;
     private double sueldo;

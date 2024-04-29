@@ -4,15 +4,14 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Main {
-    private static final String ARCHIVO_EMPLEADOS = "empleados.dat";
 
     public static void main(String[] args) {
-        ListaEmpleados listaEmpleados = cargarEmpleadosDesdeArchivo();
-        if (listaEmpleados == null) {
+        ListaEmpleados listaEmpleados = cargarEmpleado();
+        if (listaEmpleados == null) {//para crearla si no está
             listaEmpleados = new ListaEmpleados();
         }
-
-        Scanner scanner = new Scanner(System.in);
+//switch per triar entre les opcions
+        Scanner sc = new Scanner(System.in);//introduir datos teclat
         while (true) {
             System.out.println("\nMenú:");
             System.out.println("1. Añadir empleado");
@@ -20,97 +19,106 @@ public class Main {
             System.out.println("3. Mostrar empleados");
             System.out.println("4. Modificar empleado");
             System.out.println("5. Salir");
-            System.out.print("Seleccione una opción: ");
-            int opcion = scanner.nextInt();
-            scanner.nextLine();  // Consumir el salto de línea después del número
+            System.out.print("Selecciona una opción: ");
+            int opcion = sc.nextInt();
+            sc.nextLine();  // Consumir el salto de línea después del número
 
             switch (opcion) {
                 case 1:
-                    agregarEmpleado(scanner, listaEmpleados);
+                    agregarEmpleado(sc, listaEmpleados);
                     break;
                 case 2:
-                    eliminarEmpleado(scanner, listaEmpleados);
+                    eliminarEmpleado(sc, listaEmpleados);
                     break;
                 case 3:
                     listaEmpleados.mostrarEmpleados();
                     break;
                 case 4:
-                    modificarEmpleado(scanner, listaEmpleados);
+                    modificarEmpleado(sc, listaEmpleados);
                     break;
                 case 5:
-                    guardarEmpleadosEnArchivo(listaEmpleados);
+                    guardarEmpleado(listaEmpleados);
                     System.out.println("Saliendo.");
                     return;
                 default:
-                    System.out.println("Opción inválida. Inténtelo de nuevo.");
+                    System.out.println("Inténtalo de nuevo.");
             }
         }
     }
 
-    private static ListaEmpleados cargarEmpleadosDesdeArchivo() {
-        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(ARCHIVO_EMPLEADOS))) {
+    private static ListaEmpleados cargarEmpleado() {
+        //busacremos el archivo y si no lo encontramos, creamos uno con el mismo nombre
+
+        try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream("empleados.dat"))) {
             return (ListaEmpleados) entrada.readObject();
+
         } catch (FileNotFoundException e) {
-            System.out.println("No se encontró el archivo de empleados. Se creará uno nuevo.");
-        } catch (IOException | ClassNotFoundException e) {
-            System.out.println("Error al cargar empleados desde el archivo: " + e.getMessage());
+            System.out.println("No se ha encontrado el archivo. Se creará uno nuevo.");
+
+        } catch (Exception  ex) {
+            System.out.println(ex.getMessage());
         }
         return null;
     }
 
-    private static void guardarEmpleadosEnArchivo(ListaEmpleados listaEmpleados) {
-        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(ARCHIVO_EMPLEADOS))) {
+    private static void guardarEmpleado(ListaEmpleados listaEmpleados) {//se guarda en el fichero que toca
+
+        try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream("empleados.dat"))) {
             salida.writeObject(listaEmpleados);
             System.out.println("Empleados guardados correctamente en el archivo.");
-        } catch (IOException e) {
-            System.out.println("Error al guardar empleados en el archivo: " + e.getMessage());
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 
-    private static void agregarEmpleado(Scanner scanner, ListaEmpleados listaEmpleados) {
-        System.out.print("Ingrese el DNI del empleado: ");
-        String dni = scanner.nextLine();
-        System.out.print("Ingrese el nombre del empleado: ");
-        String nombre = scanner.nextLine();
-        System.out.print("Ingrese el sueldo del empleado: ");
-        double sueldo = scanner.nextDouble();
-        scanner.nextLine();  // Consumir el salto de línea después del número
+    private static void agregarEmpleado(Scanner sc, ListaEmpleados listaEmpleados) {
+//lo he tenido que modificar con scanner en todos sitios porque no me aclaraba en como ponerlo.
+
+        System.out.print("DNI del empleado: ");
+        String dni = sc.nextLine();
+        System.out.print("Nombre del empleado: ");
+        String nombre = sc.nextLine();
+        System.out.print("Sueldo del empleado: ");
+        double sueldo = sc.nextDouble();
 
         Empleado empleado = new Empleado(dni, nombre, sueldo);
         listaEmpleados.agregarEmpleado(empleado);
         System.out.println("Empleado añadido correctamente.");
     }
 
-    private static void eliminarEmpleado(Scanner scanner, ListaEmpleados listaEmpleados) {
+    private static void eliminarEmpleado(Scanner sc, ListaEmpleados listaEmpleados) {
         System.out.print("Ingrese el índice del empleado que desea eliminar: ");
-        int indice = scanner.nextInt();
-        scanner.nextLine();  // Consumir el salto de línea después del número
+        int indice = sc.nextInt();
+        sc.nextLine();  // Consumir el salto de línea después del número
 
         listaEmpleados.eliminarEmpleado(indice);
         System.out.println("Empleado eliminado correctamente.");
     }
 
-    private static void modificarEmpleado(Scanner scanner, ListaEmpleados listaEmpleados) {
+    private static void modificarEmpleado(Scanner sc, ListaEmpleados listaEmpleados) {
+
         System.out.print("Ingrese el índice del empleado que desea modificar: ");
-        int indice = scanner.nextInt();
-        scanner.nextLine();  // Consumir el salto de línea después del número
+        int indice = sc.nextInt();
+
 
         Empleado empleado = listaEmpleados.getEmpleados().get(indice);
 
         System.out.println("Empleado actual: " + empleado);
 
         System.out.print("Ingrese el nuevo DNI del empleado: ");
-        String nuevoDni = scanner.nextLine();
+        String nuevoDni = sc.nextLine();
         empleado.setDni(nuevoDni);
+        //para poder modificarlo desde la clase empleado el atributo que toca
 
         System.out.print("Ingrese el nuevo nombre del empleado: ");
-        String nuevoNombre = scanner.nextLine();
+        String nuevoNombre = sc.nextLine();
         empleado.setNombre(nuevoNombre);
 
         System.out.print("Ingrese el nuevo sueldo del empleado: ");
-        double nuevoSueldo = scanner.nextDouble();
+        double nuevoSueldo = sc.nextDouble();
         empleado.setSueldo(nuevoSueldo);
-        scanner.nextLine();  // Consumir el salto de línea después del número
+        sc.nextLine();  // Consumir el salto de línea después del número
 
         System.out.println("Empleado modificado correctamente.");
     }
